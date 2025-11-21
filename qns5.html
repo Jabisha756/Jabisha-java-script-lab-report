@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Current Date Formats</title>
+</head>
+<body>
+
+<h2>Show Current Date in Different Formats</h2>
+
+<button onclick="showDate()">Get Current Date</button>
+
+<p id="result"></p>
+
+<script>
+function showDate() {
+    let today = new Date();
+
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0');  
+    let yyyy = today.getFullYear();
+
+    let monthNames = [
+        "January","February","March","April","May","June",
+        "July","August","September","October","November","December"
+    ];
+
+    let dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+    let monthName = monthNames[today.getMonth()];
+    let dayName = dayNames[today.getDay()];
+
+    let output = `
+        <b>mm-dd-yyyy:</b> ${mm}-${dd}-${yyyy} <br>
+        <b>mm/dd/yyyy:</b> ${mm}/${dd}/${yyyy} <br>
+        <b>dd-mm-yyyy:</b> ${dd}-${mm}-${yyyy} <br>
+        <b>dd/mm/yyyy:</b> ${dd}/${mm}/${yyyy} <br>
+        <b>yyyy month date day:</b> ${yyyy} ${monthName} ${dd} (${dayName})
+    `;
+
+    document.getElementById("result").innerHTML = output;
+}
+</script>
+
+</body>
+</html>
