@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sort Array Items</title>
+</head>
+<body>
+
+<h2>Sort Array Items</h2>
+
+<p>Sample Array: <span id="arrayDisplay"></span></p>
+
+<button onclick="sortArray()">Sort Array</button>
+
+<p id="result"></p>
+
+<script>
+// given sample array
+var arr1 = [3, 8, 7, 6, 5, -4, 3, 2, 1];
+
+document.getElementById("arrayDisplay").innerHTML = JSON.stringify(arr1);
+
+function sortArray() {
+    // numeric sort
+    let sorted = arr1.sort(function(a, b) {
+        return a - b;
+    });
+
+    document.getElementById("result").innerHTML =
+        "Sorted Output: " + sorted.join(", ");
+}
+</script>
+
+</body>
+</html>

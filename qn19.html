@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Age Calculator</title>
+</head>
+<body>
+
+<h2>Calculate Your Age</h2>
+
+<form id="ageForm" onsubmit="calculateAge(event)">
+    <label for="dob">Enter your Date of Birth:</label>
+    <input type="date" id="dob" required><br><br>
+    
+    <input type="submit" value="Calculate Age">
+</form>
+
+<p id="result"></p>
+
+<script>
+function calculateAge(event) {
+    event.preventDefault(); // prevent form submission
+
+    // Get date of birth value
+    let dob = new Date(document.getElementById("dob").value);
+    let today = new Date();
+
+    if (isNaN(dob)) {
+        document.getElementById("result").innerHTML = "Please enter a valid date!";
+        return;
+    }
+
+    // Calculate age
+    let age = today.getFullYear() - dob.getFullYear();
+    let monthDiff = today.getMonth() - dob.getMonth();
+    let dayDiff = today.getDate() - dob.getDate();
+
+    // Adjust if birth month/day hasn't occurred yet this year
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+        age--;
+    }
+
+    // Display result
+    document.getElementById("result").innerHTML = "Your age is: " + age + " year(s)";
+}
+</script>
+
+</body>
+</html>

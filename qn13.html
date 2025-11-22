@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Join Array Elements</title>
+</head>
+<body>
+
+<h2>Join Array Elements into a String</h2>
+
+<p>Array: <span id="arrayDisplay"></span></p>
+
+<button onclick="joinArray()">Join Elements</button>
+
+<p id="result"></p>
+
+<script>
+// sample array
+let myArray = ["Red", "Green", "Blue", "Yellow"];
+
+document.getElementById("arrayDisplay").innerHTML = JSON.stringify(myArray);
+
+function joinArray() {
+    // join array elements into a single string
+    let result = myArray.join(", ");
+
+    // display result
+    document.getElementById("result").innerHTML = "Joined String: " + result;
+}
+</script>
+
+</body>
+</html>

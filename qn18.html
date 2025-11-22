@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Date Difference Calculator</title>
+</head>
+<body>
+
+<h2>Calculate Difference Between Two Dates (in Days)</h2>
+
+<label>Enter First Date:</label>
+<input type="date" id="date1"><br><br>
+
+<label>Enter Second Date:</label>
+<input type="date" id="date2"><br><br>
+
+<button onclick="calculateDifference()">Calculate Difference</button>
+
+<p id="result"></p>
+
+<script>
+function calculateDifference() {
+    // Get values from input
+    let d1 = new Date(document.getElementById("date1").value);
+    let d2 = new Date(document.getElementById("date2").value);
+
+    // Check if both dates are valid
+    if (isNaN(d1) || isNaN(d2)) {
+        document.getElementById("result").innerHTML = "Please enter valid dates!";
+        return;
+    }
+
+    // Calculate difference in milliseconds
+    let diffTime = Math.abs(d2 - d1);
+
+    // Convert milliseconds to days
+    let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    // Display result
+    document.getElementById("result").innerHTML = 
+        "Difference between the two dates is: " + diffDays + " day(s)";
+}
+</script>
+
+</body>
+</html>

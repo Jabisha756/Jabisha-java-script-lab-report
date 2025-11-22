@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check Array</title>
+</head>
+<body>
+
+<h2>Check Whether Input is an Array</h2>
+
+<label>Enter value (use [] for array):</label>
+<input type="text" id="inputValue" placeholder="[1,2,3] or hello">
+
+<button onclick="checkArray()">Check</button>
+
+<p id="result"></p>
+
+<script>
+function checkArray(input) {
+    return Array.isArray(input);
+}
+
+function checkArray() {
+    let value = document.getElementById("inputValue").value;
+
+    // Try to convert string to actual JavaScript value
+    try {
+        let parsed = eval(value); // converts "[1,2,3]" to actual array
+        
+        if (Array.isArray(parsed)) {
+            document.getElementById("result").innerHTML = "Yes, this is an Array.";
+        } else {
+            document.getElementById("result").innerHTML = "No, this is NOT an Array.";
+        }
+
+    } catch (e) {
+        document.getElementById("result").innerHTML = "Invalid input!";
+    }
+}
+</script>
+
+</body>
+</html>

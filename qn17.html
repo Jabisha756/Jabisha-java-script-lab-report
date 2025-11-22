@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Largest of Five Numbers</title>
+</head>
+<body>
+
+<script>
+function findLargest() {
+    // Taking 5 inputs using prompt
+    let n1 = parseFloat(prompt("Enter first number:"));
+    let n2 = parseFloat(prompt("Enter second number:"));
+    let n3 = parseFloat(prompt("Enter third number:"));
+    let n4 = parseFloat(prompt("Enter fourth number:"));
+    let n5 = parseFloat(prompt("Enter fifth number:"));
+
+    // Assume the first number is the largest
+    let largest = n1;
+
+    // Compare using conditional statements
+    if (n2 > largest) largest = n2;
+    if (n3 > largest) largest = n3;
+    if (n4 > largest) largest = n4;
+    if (n5 > largest) largest = n5;
+
+    // Display result in alert box
+    alert("The largest number is: " + largest);
+}
+
+// Call function automatically
+findLargest();
+</script>
+
+</body>
+</html>

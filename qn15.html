@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Color Choices</title>
+</head>
+<body>
+
+<h2>Color Choices Output</h2>
+
+<pre id="result"></pre>
+
+<script>
+var color = ["Blue", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow"];
+var o = ["th","st","nd","rd"];
+
+function displayColors() {
+    let output = "";
+
+    for (let i = 0; i < color.length; i++) {
+        let pos = i + 1;
+
+        // Determine the suffix
+        let suffix;
+        if (pos === 1) suffix = o[1];   // st
+        else if (pos === 2) suffix = o[2]; // nd
+        else if (pos === 3) suffix = o[3]; // rd
+        else suffix = o[0]; // th
+
+        output += pos + suffix + " choice is " + color[i] + ".\n";
+    }
+
+    document.getElementById("result").textContent = output;
+}
+
+displayColors();
+</script>
+
+</body>
+</html>
