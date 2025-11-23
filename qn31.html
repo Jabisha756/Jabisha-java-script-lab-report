@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Generator</title>
+    <style>
+        .number-box {
+            display: inline-block;
+            width: 50px;
+            padding: 10px;
+            margin: 5px;
+            text-align: center;
+            font-size: 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+        }
+        .even { background-color: green; }
+        .odd { background-color: yellow; color: black; }
+        .prime { background-color: red; }
+    </style>
+</head>
+<body>
+
+<h2>Generate Numbers with Colors</h2>
+
+<input type="number" id="limit" placeholder="Enter a number">
+<button onclick="generateNumbers()">Generate</button>
+
+<div id="output"></div>
+
+<script>
+// Function to check prime numbers
+function isPrime(num) {
+    if (num < 2) return false;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false;
+    }
+    return true;
+}
+
+function generateNumbers() {
+    let limit = document.getElementById("limit").value;
+    let output = document.getElementById("output");
+    output.innerHTML = ""; // Clear previous output
+
+    for (let i = 1; i <= limit; i++) {
+        let div = document.createElement("div");
+        div.classList.add("number-box");
+
+        if (isPrime(i)) {
+            div.classList.add("prime");
+        } else if (i % 2 === 0) {
+            div.classList.add("even");
+        } else {
+            div.classList.add("odd");
+        }
+
+        div.textContent = i;
+        output.appendChild(div);
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clone and Remove Table Row</title>
+  <style>
+    table {
+      width: 60%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    table, th, td {
+      border: 1px solid #333;
+    }
+
+    th, td {
+      padding: 8px 12px;
+      text-align: center;
+    }
+
+    button {
+      padding: 6px 12px;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+
+    .trash {
+      cursor: pointer;
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Clone and Remove Table Row</h2>
+
+<table id="myTable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>John</td>
+      <td>25</td>
+      <td><span class="trash" onclick="removeRow(this)">🗑️</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<button onclick="addRow()">Add New</button>
+
+<script>
+  function addRow() {
+    const table = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+    const lastRow = table.rows[table.rows.length - 1];
+
+    // Clone last row
+    const newRow = lastRow.cloneNode(true);
+
+    // Optional: reset input values or text
+    newRow.cells[0].textContent = 'New Name';
+    newRow.cells[1].textContent = '0';
+
+    // Append new row as last row
+    table.appendChild(newRow);
+  }
+
+  function removeRow(element) {
+    const row = element.parentNode.parentNode; // span -> td -> tr
+    row.parentNode.removeChild(row);
+  }
+</script>
+
+</body>
+</html>

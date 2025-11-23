@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Paragraph Manipulation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    #myParagraph {
+      margin-top: 20px;
+      font-size: 12pt;
+      padding: 10px;
+      border: 1px solid #333;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Paragraph Manipulation</h2>
+
+<div>
+  <button onclick="changeBackground()">Change Background</button>
+  <button onclick="changeParagraphText()">Change Paragraph</button>
+  <button onclick="changeParagraphBackground()">Paragraph Background</button>
+  <button onclick="hideParagraph()">Hide Paragraph</button>
+  <button onclick="showParagraph()">Show Paragraph</button>
+  <button onclick="increaseFont()">Increase Font +2pt</button>
+  <button onclick="decreaseFont()">Decrease Font -2pt</button>
+  <button onclick="resetFont()">Reset Font 12pt</button>
+  <button onclick="changeTextColor()">Change Text Color</button>
+</div>
+
+<p id="myParagraph">This is a sample paragraph. You can manipulate me using the buttons above.</p>
+
+<script>
+  const para = document.getElementById('myParagraph');
+
+  // Change body background
+  function changeBackground() {
+    document.body.style.backgroundColor = getRandomColor();
+  }
+
+  // Change paragraph text
+  function changeParagraphText() {
+    para.textContent = "The paragraph text has been changed!";
+  }
+
+  // Change paragraph background
+  function changeParagraphBackground() {
+    para.style.backgroundColor = getRandomColor();
+  }
+
+  // Hide paragraph
+  function hideParagraph() {
+    para.style.display = 'none';
+  }
+
+  // Show paragraph
+  function showParagraph() {
+    para.style.display = 'block';
+  }
+
+  // Increase font size by 2pt
+  function increaseFont() {
+    let current = parseInt(window.getComputedStyle(para).fontSize);
+    para.style.fontSize = (current + 2) + 'px';
+  }
+
+  // Decrease font size by 2pt
+  function decreaseFont() {
+    let current = parseInt(window.getComputedStyle(para).fontSize);
+    para.style.fontSize = (current - 2) + 'px';
+  }
+
+  // Reset font size to 12pt
+  function resetFont() {
+    para.style.fontSize = '12pt';
+  }
+
+  // Change text color
+  function changeTextColor() {
+    para.style.color = getRandomColor();
+  }
+
+  // Helper function to get random color
+  function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for(let i=0;i<6;i++){
+      color += letters[Math.floor(Math.random()*16)];
+    }
+    return color;
+  }
+</script>
+
+</body>
+</html>

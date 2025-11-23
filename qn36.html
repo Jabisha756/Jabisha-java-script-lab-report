@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cookie Manager</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    input, button {
+      padding: 6px 12px;
+      margin: 5px 0;
+    }
+
+    table {
+      width: 50%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #333;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Cookie Manager</h2>
+
+<!-- Create/Update Cookie -->
+<div>
+  <h3>Create/Update Cookie</h3>
+  <label>Key: <input type="text" id="setKey"></label><br>
+  <label>Value: <input type="text" id="setValue"></label><br>
+  <button onclick="setCookie()">Set Cookie</button>
+</div>
+
+<hr>
+
+<!-- Read Cookie -->
+<div>
+  <h3>Read Cookie</h3>
+  <label>Key: <input type="text" id="readKey"></label>
+  <button onclick="readCookie()">Read Cookie</button>
+  <p id="readResult"></p>
+</div>
+
+<hr>
+
+<!-- Display All Cookies -->
+<div>
+  <h3>All Cookies</h3>
+  <button onclick="displayCookies()">Show All Cookies</button>
+  <table id="cookieTable">
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<hr>
+
+<!-- Delete Cookie -->
+<div>
+  <h3>Delete Cookie</h3>
+  <label>Key: <input type="text" id="deleteKey"></label>
+  <button onclick="deleteCookie()">Delete Cookie</button>
+</div>
+
+<hr>
+
+<!-- Delete All Cookies -->
+<div>
+  <h3>Delete All Cookies</h3>
+  <button onclick="deleteAllCookies()">Delete All</button>
+</div>
+
+<script>
+  // a. Set cookie
+  function setCookie() {
+    const key = document.getElementById('setKey').value;
+    const value = document.getElementById('setValue').value;
+
+    if(!key) {
+      alert("Please enter a key.");
+      return;
+    }
+
+    // Set cookie with 7 days expiry
+    const d = new Date();
+    d.setTime(d.getTime() + (7*24*60*60*1000));
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = key + "=" + encodeURIComponent(value) + ";" + expires + ";path=/";
+    alert(`Cookie "${key}" set!`);
+    displayCookies();
+  }
+
+  // b. Read cookie
+  function readCookie() {
+    const key = document.getElementById('readKey').value;
+    const cookies = document.cookie.split("; ");
+    let value = null;
+
+    for(const c of cookies) {
+      const [k, v] = c.split("=");
+      if(k === key) {
+        value = decodeURIComponent(v);
+        break;
+      }
+    }
+
+    const result = document.getElementById('readResult');
+    if(value !== null) {
+      result.textContent = `Value: ${value}`;
+    } else {
+      result.textContent = `Cookie "${key}" not found`;
+    }
+  }
+
+  // c. Display all cookies
+  function displayCookies() {
+    const tableBody = document.querySelector('#cookieTable tbody');
+    tableBody.innerHTML = "";
+    const cookies = document.cookie.split("; ").filter(c => c);
+    for(const c of cookies) {
+      const [k, v] = c.split("=");
+      const row = document.createElement("tr");
+      const keyCell = document.createElement("td");
+      const valueCell = document.createElement("td");
+      keyCell.textContent = k;
+      valueCell.textContent = decodeURIComponent(v);
+      row.appendChild(keyCell);
+      row.appendChild(valueCell);
+      tableBody.appendChild(row);
+    }
+  }
+
+  // d. Delete cookie by key
+  function deleteCookie() {
+    const key = document.getElementById('deleteKey').value;
+    if(!key) {
+      alert("Enter key to delete");
+      return;
+    }
+
+    document.cookie = key + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    alert(`Cookie "${key}" deleted!`);
+    displayCookies();
+  }
+
+  // e. Delete all cookies
+  function deleteAllCookies() {
+    const cookies = document.cookie.split("; ").filter(c => c);
+    for(const c of cookies) {
+      const [key] = c.split("=");
+      document.cookie = key + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+    alert("All cookies deleted!");
+    displayCookies();
+  }
+
+  // Initialize display
+  displayCookies();
+</script>
+
+</body>
+</html>

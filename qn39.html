@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    form {
+      width: 400px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+      box-sizing: border-box;
+    }
+
+    .error {
+      color: red;
+      font-size: 12px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+
+<form id="myForm" onsubmit="return validateForm()">
+
+  <label>Name:</label>
+  <input type="text" id="name">
+  <div class="error" id="nameError"></div>
+
+  <label>Address:</label>
+  <textarea id="address"></textarea>
+  <div class="error" id="addressError"></div>
+
+  <label>Username:</label>
+  <input type="text" id="username">
+  <div class="error" id="usernameError"></div>
+
+  <label>Email:</label>
+  <input type="text" id="email">
+  <div class="error" id="emailError"></div>
+
+  <label>Password:</label>
+  <input type="password" id="password">
+  <div class="error" id="passwordError"></div>
+
+  <label>Website:</label>
+  <input type="text" id="website">
+
+  <label>Phone:</label>
+  <input type="text" id="phone">
+  <div class="error" id="phoneError"></div>
+
+  <label>Gender:</label>
+  <input type="radio" name="gender" value="Male"> Male
+  <input type="radio" name="gender" value="Female"> Female
+  <div class="error" id="genderError"></div>
+
+  <label>Course:</label>
+  <select id="course">
+    <option value="">--Select--</option>
+    <option value="HTML">HTML</option>
+    <option value="CSS">CSS</option>
+    <option value="JavaScript">JavaScript</option>
+  </select>
+  <div class="error" id="courseError"></div>
+
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+function validateForm() {
+  let isValid = true;
+
+  // Name Validation
+  const name = document.getElementById('name').value.trim();
+  if(name === "" || /\d/.test(name)) {
+    document.getElementById('nameError').textContent = "Please enter a valid name without numbers.";
+    isValid = false;
+  } else {
+    document.getElementById('nameError').textContent = "";
+  }
+
+  // Address Validation
+  const address = document.getElementById('address').value.trim();
+  if(address === "") {
+    document.getElementById('addressError').textContent = "Address cannot be empty.";
+    isValid = false;
+  } else {
+    document.getElementById('addressError').textContent = "";
+  }
+
+  // Username Validation
+  const username = document.getElementById('username').value.trim();
+  if(username === "" || /[^a-zA-Z0-9_]/.test(username) || /\s/.test(username)) {
+    document.getElementById('usernameError').textContent = "Username cannot be empty, contain spaces or special characters except underscore.";
+    isValid = false;
+  } else {
+    document.getElementById('usernameError').textContent = "";
+  }
+
+  // Email Validation
+  const email = document.getElementById('email').value.trim();
+  if(email === "" || !email.includes("@")) {
+    document.getElementById('emailError').textContent = "Please enter a valid email containing '@'.";
+    isValid = false;
+  } else {
+    document.getElementById('emailError').textContent = "";
+  }
+
+  // Password Validation
+  const password = document.getElementById('password').value;
+  const pwdRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+  if(password === "" || !pwdRegex.test(password)) {
+    document.getElementById('passwordError').textContent = "Password must be at least 8 characters with 1 digit, 1 uppercase, 1 lowercase, 1 special character.";
+    isValid = false;
+  } else {
+    document.getElementById('passwordError').textContent = "";
+  }
+
+  // Phone Validation
+  const phone = document.getElementById('phone').value.trim();
+  if(phone === "" || !/^(98|97|96)\d{8}$/.test(phone)) {
+    document.getElementById('phoneError').textContent = "Phone must start with 98/97/96 and contain only digits.";
+    isValid = false;
+  } else {
+    document.getElementById('phoneError').textContent = "";
+  }
+
+  // Gender Validation
+  const genders = document.getElementsByName('gender');
+  let genderSelected = false;
+  for(let g of genders) {
+    if(g.checked) {
+      genderSelected = true;
+      break;
+    }
+  }
+  if(!genderSelected) {
+    document.getElementById('genderError').textContent = "Please select a gender.";
+    isValid = false;
+  } else {
+    document.getElementById('genderError').textContent = "";
+  }
+
+  // Course Validation
+  const course = document.getElementById('course').value;
+  if(course === "") {
+    document.getElementById('courseError').textContent = "Please select a course.";
+    isValid = false;
+  } else {
+    document.getElementById('courseError').textContent = "";
+  }
+
+  return isValid;
+}
+</script>
+
+</body>
+</html>
