@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Challenges</title>
+</head>
+<body>
+
+<div class="wrapper">
+    <h1>Asabeneh Yetayeh challenges in <span id="year">2020</span></h1>
+    <h2>30DaysOfJavaScript Challenge</h2>
+    <p id="date"></p>
+
+    <ul>
+        <li>Python Challenge Done</li>
+        <li>JavaScript Challenge Ongoing</li>
+        <li>React Challenge Coming</li>
+        <li>FullStack Challenge Coming</li>
+        <li>DataAnalysis Challenge Coming</li>
+        <li>ReactNative Challenge Coming</li>
+        <li>MachineLearning Challenge Coming</li>
+    </ul>
+</div>
+
+<script>
+// Select elements
+let year = document.getElementById("year");
+let dateTime = document.getElementById("date");
+let listItems = document.querySelectorAll("li");
+
+// Center all content using JS
+document.body.style.fontFamily = "Arial";
+document.body.style.textAlign = "center";
+
+// a. YEAR COLOR CHANGES EVERY 1 SECOND
+setInterval(() => {
+    year.style.color = randomColor();
+}, 1000);
+
+// b. DATE AND TIME + BACKGROUND COLOR CHANGE EVERY 1 SECOND
+setInterval(() => {
+    let now = new Date().toLocaleString();
+    dateTime.textContent = now;
+
+    dateTime.style.padding = "10px";
+    dateTime.style.display = "inline-block";
+    dateTime.style.borderRadius = "6px";
+    dateTime.style.backgroundColor = randomColor();
+}, 1000);
+
+// c, d, e. Style list items based on text
+listItems.forEach(li => {
+    li.style.listStyle = "none";
+    li.style.margin = "8px";
+    li.style.padding = "12px";
+    li.style.borderRadius = "5px";
+    li.style.width = "350px";
+    li.style.marginLeft = "auto";
+    li.style.marginRight = "auto";
+    li.style.fontSize = "18px";
+
+    if (li.textContent.includes("Done")) {
+        li.style.backgroundColor = "lightgreen"; // Completed
+    }
+    else if (li.textContent.includes("Ongoing")) {
+        li.style.backgroundColor = "yellow"; // Ongoing
+    }
+    else if (li.textContent.includes("Coming")) {
+        li.style.backgroundColor = "red"; // Coming
+        li.style.color = "white";
+    }
+});
+
+// Function to generate random colors
+function randomColor() {
+    return `rgb(${Math.floor(Math.random()*255)}, 
+                ${Math.floor(Math.random()*255)}, 
+                ${Math.floor(Math.random()*255)})`;
+}
+</script>
+
+</body>
+</html>

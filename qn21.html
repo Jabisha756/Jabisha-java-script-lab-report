@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weekend Date Finder</title>
+</head>
+<body>
+
+<h2>Find the Weekend Dates</h2>
+
+<button onclick="getWeekendDates()">Get Weekend Dates</button>
+
+<p id="output"></p>
+
+<script>
+function getWeekendDates() {
+    const today = new Date();
+    const day = today.getDay(); // 0 = Sunday, 6 = Saturday
+
+    // Calculate days until Saturday (6)n
+    const daysUntilSaturday = (6 - day + 7) % 7;
+    // Calculate days until Sunday (0)
+    const daysUntilSunday = (7 - day) % 7;
+
+    // Create Saturday and Sunday dates
+    const saturday = new Date(today);
+    saturday.setDate(today.getDate() + daysUntilSaturday);
+
+    const sunday = new Date(today);
+    sunday.setDate(today.getDate() + daysUntilSunday);
+
+    // Format dates
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    document.getElementById("output").innerHTML =
+        "Next Saturday: <b>" + saturday.toLocaleDateString(undefined, options) + "</b><br>" +
+        "Next Sunday: <b>" + sunday.toLocaleDateString(undefined, options) + "</b>";
+}
+</script>
+
+</body>
+</html>

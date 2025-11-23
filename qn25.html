@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Person Account Object</title>
+</head>
+<body>
+
+<h2>Person Account Program</h2>
+
+<button onclick="showAccountInfo()">Show Account Info</button>
+
+<p id="output"></p>
+
+<script>
+// ---------------------------
+// Person Account Object
+// ---------------------------
+const personAccount = {
+    firstName: "Jabisha",
+    lastName: "Subedi",
+
+    // incomes stored as (description : amount)
+    incomes: {
+        salary: 25000,
+        freelancing: 5000
+    },
+
+    // expenses stored as (description : amount)
+    expenses: {
+        rent: 8000,
+        food: 4000
+    },
+
+    // Add new income
+    addIncome: function(description, amount) {
+        this.incomes[description] = amount;
+    },
+
+    // Add new expense
+    addExpense: function(description, amount) {
+        this.expenses[description] = amount;
+    },
+
+    // Calculate total income
+    totalIncome: function() {
+        let sum = 0;
+        for (let key in this.incomes) {
+            sum += this.incomes[key];
+        }
+        return sum;
+    },
+
+    // Calculate total expenses
+    totalExpense: function() {
+        let sum = 0;
+        for (let key in this.expenses) {
+            sum += this.expenses[key];
+        }
+        return sum;
+    },
+
+    // Account balance = income − expenses
+    accountBalance: function() {
+        return this.totalIncome() - this.totalExpense();
+    },
+
+    // Full account information
+    accountInfo: function() {
+        return `
+        Name: ${this.firstName} ${this.lastName}<br>
+        Total Income: ${this.totalIncome()}<br>
+        Total Expense: ${this.totalExpense()}<br>
+        Account Balance: ${this.accountBalance()}
+        `;
+    }
+};
+
+// ---------------------------
+// Show result when button clicked
+// ---------------------------
+function showAccountInfo() {
+
+    // Add extra example income & expense
+    personAccount.addIncome("bonus", 3000);
+    personAccount.addExpense("travel", 2000);
+
+    document.getElementById("output").innerHTML = personAccount.accountInfo();
+}
+</script>
+
+</body>
+</html>

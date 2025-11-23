@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Remove Characters from String</title>
+</head>
+<body>
+
+<h2>Remove Specified Number of Characters from a String</h2>
+
+<label>Enter a string:</label><br>
+<input type="text" id="myString" placeholder="Enter string"><br><br>
+
+<label>Number of characters to remove:</label><br>
+<input type="number" id="numChars" min="0"><br><br>
+
+<button onclick="removeCharacters()">Remove</button>
+
+<p id="result"></p>
+
+<script>
+function removeCharacters() {
+    let str = document.getElementById("myString").value;
+    let num = parseInt(document.getElementById("numChars").value);
+
+    // Remove specified number of characters from the start
+    let newStr = str.substring(num);
+
+    document.getElementById("result").innerHTML =
+        "New string: <b>" + newStr + "</b>";
+}
+</script>
+
+</body>
+</html>
+ 

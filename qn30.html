@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Countries Table</title>
+</head>
+<body>
+
+<h2 style="text-align:center;">Countries Table (6 per row)</h2>
+
+<div id="tableContainer"></div>
+
+<script>
+// Countries Array (You can add more if needed)
+const countries = [
+  "Afghanistan", "Albania", "Algeria", "Andorra", "Angola",
+  "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
+  "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus",
+  "Belgium", "Belize", "Benin", "Bhutan", "Bolivia",
+  "Bosnia", "Botswana", "Brazil", "Brunei", "Bulgaria",
+  "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada",
+  "Cape Verde", "Chad", "Chile", "China", "Colombia",
+  "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba",
+  "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica",
+  "Ecuador", "Egypt", "El Salvador", "Estonia", "Ethiopia"
+];
+
+// Select container
+let container = document.getElementById("tableContainer");
+
+// Create table element
+let table = document.createElement("table");
+
+// Style table using JS
+table.style.width = "70%";
+table.style.margin = "auto";
+table.style.borderCollapse = "collapse";
+table.style.textAlign = "center";
+table.style.fontFamily = "Arial";
+
+// Add countries to the table — 6 per row
+let row;
+countries.slice(0, 50).forEach((country, index) => {
+    if (index % 6 === 0) {
+        row = document.createElement("tr");
+        table.appendChild(row);
+    }
+
+    let cell = document.createElement("td");
+    cell.textContent = country;
+
+    // Cell styling
+    cell.style.border = "1px solid black";
+    cell.style.padding = "10px";
+    cell.style.fontSize = "18px";
+
+    row.appendChild(cell);
+});
+
+// Append table to container
+container.appendChild(table);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Manipulation Task</title>
+</head>
+<body>
+
+<h2>DOM Manipulation Example</h2>
+
+<!-- Four paragraph elements -->
+<p id="p1">Paragraph One</p>
+<p id="p2">Paragraph Two</p>
+<p id="p3">Paragraph Three</p>
+<p id="p4">Paragraph Four</p>
+
+<script>
+// a. Get the first paragraph using querySelector(tagname)
+let firstPara = document.querySelector("p");
+console.log("First paragraph:", firstPara.textContent);
+
+// b. Get each paragraph by id using querySelector('#id')
+let para1 = document.querySelector("#p1");
+let para2 = document.querySelector("#p2");
+let para3 = document.querySelector("#p3");
+let para4 = document.querySelector("#p4");
+
+// c. Get all <p> elements as NodeList using querySelectorAll(tagname)
+let allParagraphs = document.querySelectorAll("p");
+
+// d. Loop through NodeList and get text content of each paragraph
+allParagraphs.forEach((p, i) => {
+    console.log("Paragraph " + (i + 1) + ": " + p.textContent);
+});
+
+// e. Set text content to the fourth paragraph
+para4.textContent = "Fourth Paragraph (Updated)";
+
+// f. Set id and class attributes for all paragraphs in different methods
+para1.setAttribute("class", "class1");
+para2.className = "class2";
+para3.id = "newID3";
+para4.setAttribute("id", "newID4");
+
+// g. Change style of each paragraph
+allParagraphs.forEach(p => {
+    p.style.fontSize = "18px";
+    p.style.fontFamily = "Arial";
+    p.style.padding = "5px";
+    p.style.border = "1px solid black";
+});
+
+// h. Give first & third green, second & fourth red
+allParagraphs.forEach((p, index) => {
+    if (index === 0 || index === 2) {
+        p.style.color = "green";
+    } else {
+        p.style.color = "red";
+    }
+});
+
+// i. Set text content, id, and class to each paragraph using JS
+allParagraphs[0].textContent = "Updated Text for Paragraph 1";
+allParagraphs[0].id = "finalP1";
+allParagraphs[0].className = "finalClass1";
+
+allParagraphs[1].textContent = "Updated Text for Paragraph 2";
+allParagraphs[1].id = "finalP2";
+allParagraphs[1].className = "finalClass2";
+
+allParagraphs[2].textContent = "Updated Text for Paragraph 3";
+allParagraphs[2].id = "finalP3";
+allParagraphs[2].className = "finalClass3";
+
+allParagraphs[3].textContent = "Updated Text for Paragraph 4";
+allParagraphs[3].id = "finalP4";
+allParagraphs[3].className = "finalClass4";
+
+</script>
+
+</body>
+</html>

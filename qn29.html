@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Generator</title>
+</head>
+<body>
+
+<h2 style="text-align:center;">0 to 100 Number Generator</h2>
+
+<div id="container"></div>
+
+<script>
+// Select container
+let container = document.getElementById("container");
+
+// Apply container styling
+container.style.display = "grid";
+container.style.gridTemplateColumns = "repeat(10, 1fr)";
+container.style.gap = "10px";
+container.style.width = "70%";
+container.style.margin = "auto";
+container.style.fontFamily = "Arial";
+
+// Function to check prime
+function isPrime(num) {
+    if (num < 2) return false;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false;
+    }
+    return true;
+}
+
+// Create numbers 0 to 100
+for (let i = 0; i <= 100; i++) {
+    let div = document.createElement("div");
+    div.textContent = i;
+    div.style.padding = "15px";
+    div.style.textAlign = "center";
+    div.style.fontSize = "20px";
+    div.style.fontWeight = "bold";
+    div.style.borderRadius = "5px";
+
+    // Apply colors
+    if (isPrime(i)) {
+        div.style.backgroundColor = "red";      // Prime
+        div.style.color = "white";
+    } 
+    else if (i % 2 === 0) {
+        div.style.backgroundColor = "green";    // Even
+        div.style.color = "white";
+    } 
+    else {
+        div.style.backgroundColor = "yellow";   // Odd
+    }
+
+    container.appendChild(div);
+}
+</script>
+
+</body>
+</html>

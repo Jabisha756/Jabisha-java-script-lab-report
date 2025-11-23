@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dog Object Example</title>
+</head>
+<body>
+
+<h2>Dog Object Program</h2>
+
+<button onclick="runDogProgram()">Run Program</button>
+
+<p id="output"></p>
+
+<script>
+function runDogProgram() {
+
+    // a. Create an empty object called dog
+    let dog = {};
+
+    // b. Print the dog object in console
+    console.log("Empty dog object:", dog);
+
+    // c. Add name, legs, color, age and bark properties
+    dog.name = "Buddy";
+    dog.legs = 4;
+    dog.color = "Brown";
+    dog.age = 3;
+    dog.bark = function() {
+        return "Woof Woof!";
+    };
+
+    // d. Get values from the dog object
+    console.log("Dog Name:", dog.name);
+    console.log("Dog Legs:", dog.legs);
+    console.log("Dog Color:", dog.color);
+    console.log("Dog Age:", dog.age);
+    console.log("Dog Bark Sound:", dog.bark()); 
+
+    // e. Add new properties: breed, getDogInfo
+    dog.breed = "Labrador";
+    dog.getDogInfo = function() {
+        return `Name: ${this.name}, Age: ${this.age}, Color: ${this.color}, Breed: ${this.breed}`;
+    };
+
+    // Display on webpage
+    document.getElementById("output").innerHTML = `
+        <b>Dog Information:</b><br>
+        Name: ${dog.name}<br>
+        Legs: ${dog.legs}<br>
+        Color: ${dog.color}<br>
+        Age: ${dog.age}<br>
+        Bark: ${dog.bark()}<br>
+        Breed: ${dog.breed}<br>
+        Dog Info: ${dog.getDogInfo()}
+    `;
+}
+</script>
+
+</body>
+</html>
+ 
